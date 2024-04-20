@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>547590045444-ng48auq5k64pn7qkln629uco49lqcsgk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.547590045444-ng48auq5k64pn7qkln629uco49lqcsgk</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>547590045444-20f0sjpevauhvmqs5ivi4u92ag9vf6vt.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBk4LY0bt65J4JZNWTv_997H3p_TIcPoIk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>547590045444</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.janmanager.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>janma-schotter</string>
+	<key>STORAGE_BUCKET</key>
+	<string>janma-schotter.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:547590045444:ios:9a0830eb4b3a37af81da51</string>
+</dict>
+</plist>

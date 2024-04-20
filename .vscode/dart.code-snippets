@@ -1,0 +1,67 @@
+{
+    "@freezed": {
+      "prefix": "@freezed",
+      "scope": "dart",
+      "body": [
+        "import 'package:freezed_annotation/freezed_annotation.dart';",
+        "part '$TM_FILENAME_BASE.freezed.dart';",
+        "",
+        "@freezed",
+        "class $1 with _$$1 {",
+        "  const factory $1({",
+        "    required int data1,",
+        "    required int data2,",
+        "    required int data3,",
+        "  }) = _$1;",
+        "}"
+      ]
+    },
+    "@riverpod": {
+      "prefix": "@riverpod",
+      "scope": "dart",
+      "body": [
+        "import 'package:riverpod_annotation/riverpod_annotation.dart';",
+        "part '$TM_FILENAME_BASE.g.dart';",
+        "",
+        "@riverpod",
+        "class $1Notifire extends _$$1Notifire {",
+        "  @override",
+        "  int build() {",
+        "    return 0;",
+        "  }",
+        "}"
+      ]
+    },
+    "build_runner": {
+      "prefix": "build_runner",
+      "body": [
+        "flutter pub run build_runner build --delete-conflicting-outputs"
+      ]
+    },
+    "state_provider": {
+      "prefix": "state_provider",
+      "scope": "dart",
+      "body": [
+        "final $1Provider = StateProvider<int>((ref) {",
+        "  return 0;",
+        "});"
+      ]
+    },
+    "consumer": {
+      "prefix": "consumer",
+      "scope": "dart",
+      "body": [
+        "import 'package:flutter/material.dart';",
+        "import 'package:flutter_riverpod/flutter_riverpod.dart';",
+        "",
+        "class $1 extends ConsumerWidget {",
+        "  const $1({super.key});",
+        "",
+        "  @override",
+        "  Widget build(BuildContext context, WidgetRef ref) {",
+        "    return Container();",
+        "  }",
+        "}"
+      ]
+    }
+  }

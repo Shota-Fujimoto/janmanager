@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "547590045444",
+    "project_id": "janma-schotter",
+    "storage_bucket": "janma-schotter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547590045444:android:657dafc39b82fbc081da51",
+        "android_client_info": {
+          "package_name": "com.example.janma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547590045444-20f0sjpevauhvmqs5ivi4u92ag9vf6vt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.janma",
+            "certificate_hash": "85ebec085737daf56bc8344f8d1ec0abba47dbd0"
+          }
+        },
+        {
+          "client_id": "547590045444-idsornvqe6h5as5og0kosbbte12li12g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRg4Gn6S5HrTAbmwSJB_WBPFRRm0JGAQA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547590045444-idsornvqe6h5as5og0kosbbte12li12g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "547590045444-3ngojk3evhfna7spfg0sbi7djggcca9k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.janma"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:547590045444:android:c2d37c98328418d681da51",
+        "android_client_info": {
+          "package_name": "com.example.janmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "547590045444-idsornvqe6h5as5og0kosbbte12li12g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRg4Gn6S5HrTAbmwSJB_WBPFRRm0JGAQA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "547590045444-idsornvqe6h5as5og0kosbbte12li12g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "547590045444-3ngojk3evhfna7spfg0sbi7djggcca9k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.janma"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
