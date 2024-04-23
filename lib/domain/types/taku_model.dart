@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TakuModel {
+  final String? id;
   final String? userId;
   final String? takuName;
   final String? haipai;
@@ -11,6 +12,7 @@ class TakuModel {
   final String? feeIppan;
 
   TakuModel({
+    this.id,
     this.userId,
     this.takuName,
     this.haipai,

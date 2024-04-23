@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:janmanager/influstructure/gcp/taku_servise.dart';
+import 'package:janmanager/application/state/taku_models_provider.dart';
 import 'package:janmanager/presentation/thema/color_thema.dart';
 
 class TakuListWidget extends ConsumerWidget {
@@ -10,18 +10,19 @@ class TakuListWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    final takuList = [];
-    
-    void createTakuList(id) async {
-      final takuServise = TakuServise();
-      await takuServise.read(id);
-        for (final taku in takuList) {
-          takuList.add(taku.takuName);
-        }
+    // 卓モデルたち(AsyncValue)
+    final asyncTakuList = ref.watch(takuModelsNotifireProvider);
+
+    //エラー・処理中処理
+    if (asyncTakuList.hasError) {
+      return const Text('エラーのときに出すWidget');
+    }
+    if (!asyncTakuList.hasValue) {
+      return const Text('データ準備中に出すWidget');
     }
 
-    createTakuList(userId);
-    print(takuList);
+    //卓リスト
+    final takuList = asyncTakuList.value!;
 
     return SizedBox(
       width: 1000,
@@ -38,7 +39,7 @@ class TakuListWidget extends ConsumerWidget {
                 elevation: 0
               ),
               onPressed: () {}, 
-              child: Text(takuList[index], style: const TextStyle(color: ColorThema.black),)
+              child: Text(takuList[index].takuName!, style: const TextStyle(color: ColorThema.black),)
             ),
           );
         },

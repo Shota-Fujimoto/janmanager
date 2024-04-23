@@ -6,15 +6,12 @@ class TakuServise {
 
   Future<void> create(takuModel) async {
     //新ドキュメントを取得
-    //final table = db.collection('janmanager_taku').doc();
-    //データを登録
-    //table.set(takuModel);
-
     final docRef = db.collection('janmanager_taku').withConverter(
       fromFirestore: TakuModel.fromFirestore,
       toFirestore: (TakuModel takuModel, options) => takuModel.toFirestore(),
     ).doc();
 
+    //データをセット
     await  docRef.set(takuModel);
   }
 
@@ -29,7 +26,14 @@ class TakuServise {
     final docSnap = await ref.get();
     //リスト化
     final List<TakuModel> takuList = docSnap.docs.map((doc) => TakuModel(
-      takuName: doc['takuName']
+      id: doc.id,
+      userId: doc['userId'],
+      takuName: doc['takuName'],
+      haipai: doc['haipai'],
+      sanma: doc['sanma'],
+      smoke: doc['smoke'],
+      feeStudent: doc['feeStudent'],
+      feeIppan: doc['feeIppan']
     )).toList();
 
     return takuList;
