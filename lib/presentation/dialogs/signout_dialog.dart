@@ -45,6 +45,7 @@ class _SigOutDialogState extends State<SignOutDialog> {
                       setErrMsg();
                     },
                   );
+                  Navigator.pop(context);
                 },
                 child: const Text('はい', style: TextStyle(color: ColorThema.green, fontWeight: FontWeight.bold)),
               ),

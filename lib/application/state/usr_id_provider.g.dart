@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'taku_models_provider.dart';
+part of 'usr_id_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$takuModelsNotifireHash() =>
-    r'40ae20bb4ea3e9488e062cae8523d2f4a5ea1f67';
+String _$userIdNotifireHash() => r'8fd3ff9d4ba5948e9459471969f31492edef9408';
 
-/// See also [TakuModelsNotifire].
-@ProviderFor(TakuModelsNotifire)
-final takuModelsNotifireProvider = AutoDisposeAsyncNotifierProvider<
-    TakuModelsNotifire, TakuModelList>.internal(
-  TakuModelsNotifire.new,
-  name: r'takuModelsNotifireProvider',
+/// See also [UserIdNotifire].
+@ProviderFor(UserIdNotifire)
+final userIdNotifireProvider =
+    AutoDisposeNotifierProvider<UserIdNotifire, String>.internal(
+  UserIdNotifire.new,
+  name: r'userIdNotifireProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$takuModelsNotifireHash,
+      : _$userIdNotifireHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$TakuModelsNotifire = AutoDisposeAsyncNotifier<TakuModelList>;
+typedef _$UserIdNotifire = AutoDisposeNotifier<String>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

@@ -11,8 +11,9 @@ class SizeThema {
 
   static const double barheight = 10;
 
-  static const double fontSizeTitle = 60;
-  static const double fontSizeHomeTitle = 30;
+  static const double fontSizeWhale = 60;
+  static const double fontSizeElephant = 30;
+  static const double fontSizeTiger = 18;
 
   static const double appbarSide = 50;
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:janmanager/application/state/taku_models_provider.dart';
 import 'package:janmanager/domain/types/taku_model.dart';
 import 'package:janmanager/influstructure/gcp/taku_servise.dart';
 import 'package:janmanager/presentation/thema/color_thema.dart';
@@ -6,30 +8,39 @@ import 'package:janmanager/presentation/thema/size_thema.dart';
 
 class AddTakuDialog extends StatefulWidget {
   final String userId;
-  const AddTakuDialog({super.key, required this.userId});
+  final WidgetRef ref;
+  const AddTakuDialog({super.key, required this.userId, required this.ref});
 
   @override
   State<AddTakuDialog> createState() => _AddTakuDialogState();
 }
 
 class _AddTakuDialogState extends State<AddTakuDialog> {
+  //エラーメッセージ（全体）
+  String _errMsgAll = '';
   //卓名
   String _takuName = '';
+  String _errMsgTakuName = '';
   //配牌
   String _haipai = 'auto';
+  String _errMsgHaipai = '';
   //三麻
   String _sanma = 'ok';
+  String _errMsgSanma = '';
   //喫煙
   String _smoke = 'all';
+  String _errMsgSmoke = '';
   //学生料金(/h)
   String _feeStudent = '';
+  String _errMsgFeeStudent = '';
   //一般料金(/h)
   String _feeIppan = '';
+  String _errMsgFeeIppan = '';
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('新規卓作成', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: ColorThema.green),),
+      title: const Text('新規卓作成', style: TextStyle(fontSize: SizeThema.fontSizeElephant, fontWeight: FontWeight.bold, color: ColorThema.green),),
       content: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
@@ -42,11 +53,19 @@ class _AddTakuDialogState extends State<AddTakuDialog> {
               2: IntrinsicColumnWidth(),
             },
             children: [
+              //エラーメッセージ（全体）
+              TableRow(
+                children: [
+                  Container(),
+                  Container(),
+                  const SizedBox(height: 20)
+                ]
+              ),
               //卓名
               TableRow(
                 children: [
-                  const Center(child: Text('卓名', style: TextStyle(fontSize: 18),)),
-                  const Center(child: Text(':', style: TextStyle(fontSize: 18),)),
+                  const Center(child: Text('卓名', style: TextStyle(fontSize: SizeThema.fontSizeTiger),)),
+                  const Center(child: Text(':', style: TextStyle(fontSize: SizeThema.fontSizeTiger),)),
                   SizedBox(
                     width: SizeThema.fieldWidth,
                     height: SizeThema.fieldHeightMin,
@@ -79,8 +98,8 @@ class _AddTakuDialogState extends State<AddTakuDialog> {
               //配牌
               TableRow(
                 children: [
-                  const Center(child: Text('配牌', style: TextStyle(fontSize: 18),)),
-                  const Center(child: Text(':', style: TextStyle(fontSize: 18),)),
+                  const Center(child: Text('配牌', style: TextStyle(fontSize: SizeThema.fontSizeTiger),)),
+                  const Center(child: Text(':', style: TextStyle(fontSize: SizeThema.fontSizeTiger),)),
                   SizedBox(
                     width: SizeThema.fieldWidth,
                     height: SizeThema.fieldHeightMin,
@@ -127,8 +146,8 @@ class _AddTakuDialogState extends State<AddTakuDialog> {
               //三麻
               TableRow(
                 children: [
-                  const Center(child: Text('三麻', style: TextStyle(fontSize: 18),)),
-                  const Center(child: Text(':', style: TextStyle(fontSize: 18),)),
+                  const Center(child: Text('三麻', style: TextStyle(fontSize: SizeThema.fontSizeTiger),)),
+                  const Center(child: Text(':', style: TextStyle(fontSize: SizeThema.fontSizeTiger),)),
                   SizedBox(
                     width: SizeThema.fieldWidth,
                     height: SizeThema.fieldHeightMin,
@@ -175,8 +194,8 @@ class _AddTakuDialogState extends State<AddTakuDialog> {
               //喫煙
               TableRow(
                 children: [
-                  const Center(child: Text('喫煙', style: TextStyle(fontSize: 18),)),
-                  const Center(child: Text(':', style: TextStyle(fontSize: 18),)),
+                  const Center(child: Text('喫煙', style: TextStyle(fontSize: SizeThema.fontSizeTiger),)),
+                  const Center(child: Text(':', style: TextStyle(fontSize: SizeThema.fontSizeTiger),)),
                   SizedBox(
                     width: SizeThema.fieldWidth,
                     height: SizeThema.fieldHeightMin,
@@ -235,8 +254,8 @@ class _AddTakuDialogState extends State<AddTakuDialog> {
               //学生料金
               TableRow(
                 children: [
-                  const Center(child: Text('学生料金(/h)', style: TextStyle(fontSize: 18))),
-                  const Center(child: Text(':', style: TextStyle(fontSize: 18))),
+                  const Center(child: Text('学生料金(/h)', style: TextStyle(fontSize: SizeThema.fontSizeTiger))),
+                  const Center(child: Text(':', style: TextStyle(fontSize: SizeThema.fontSizeTiger))),
                   SizedBox(
                     width: SizeThema.fieldWidth,
                     height: SizeThema.fieldHeightMin,
@@ -269,8 +288,8 @@ class _AddTakuDialogState extends State<AddTakuDialog> {
               //一般料金
               TableRow(
                 children: [
-                  const Center(child: Text('一般料金(/h)', style: TextStyle(fontSize: 18))),
-                  const Center(child: Text(':', style: TextStyle(fontSize: 18))),
+                  const Center(child: Text('一般料金(/h)', style: TextStyle(fontSize: SizeThema.fontSizeTiger))),
+                  const Center(child: Text(':', style: TextStyle(fontSize: SizeThema.fontSizeTiger))),
                   SizedBox(
                     width: SizeThema.fieldWidth,
                     height: SizeThema.fieldHeightMin,
@@ -318,12 +337,13 @@ class _AddTakuDialogState extends State<AddTakuDialog> {
                     feeStudent: _feeStudent,
                     feeIppan: _feeIppan
                   );
+                  //卓サービスをインスタンス化
                   final takuServise = TakuServise();
-                  List<TakuModel> takuList = await takuServise.read(widget.userId);
-                  for (final taku in takuList) {
-                    print(taku.takuName);
-                  }
+                  //卓を新規作成
                   takuServise.create(takuModel);
+                  //状態管理している卓リストを最新化
+                  widget.ref.read(takuModelsNotifireProvider.notifier).reRead();
+                  //ダイアログを閉じる
                   Navigator.pop(context);
                 },
                 child:  const Text('作成', style: TextStyle(color: ColorThema.green, fontWeight: FontWeight.bold)),

@@ -1,4 +1,4 @@
-import 'package:janmanager/application/state/signin_state.dart';
+import 'package:janmanager/application/state/usr_id_provider.dart';
 import 'package:janmanager/domain/types/taku_model.dart';
 import 'package:janmanager/influstructure/gcp/taku_servise.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -7,19 +7,18 @@ part 'taku_models_provider.g.dart';
 typedef TakuModelList = List<TakuModel>;
 
 @riverpod
-@Riverpod(dependencies: [userIdProvider])
 class TakuModelsNotifire extends _$TakuModelsNotifire {
   @override
   Future<TakuModelList> build() async {
     //卓サービスをインスタンス化
     TakuServise takuServise = TakuServise();
     //ユーザーIDを取得
-    String userId = ref.read(userIdProvider);
+    final userId = ref.read(userIdNotifireProvider);
     //卓リストを返す
     return await takuServise.read(userId);
   }
 
-  Future<void> addNewTaku(TakuModel newModel) async {
+  Future<void> reRead() async {
     // エラーチェック
     if (state.value == null) {
       // エラー
@@ -28,16 +27,20 @@ class TakuModelsNotifire extends _$TakuModelsNotifire {
       );
     }
 
-    /* ここでserviceクラスを呼び出してfirebaseと通信したり */
+    
+    final takuServise = TakuServise();
+    final userId = ref.read(userIdNotifireProvider);
+    List<TakuModel> newTakuModels = await takuServise.read(userId);
+    state = AsyncValue.data(newTakuModels);
 
-    // 古いモデルたち
-    final oldModels = state.value!;
-    // 新しいモデルたち (List.of でコピーしてから使う)
-    final newModels = List.of(oldModels);
-    // データに追加
-    newModels.add(newModel);
+    // // 古いモデルたち
+    // final oldModels = state.value!;
+    // // 新しいモデルたち (List.of でコピーしてから使う)
+    // final newModels = List.of(oldModels);
+    // // データに追加
+    // newModels.add(newModel);
 
-    // 状態を上書き
-    state = AsyncValue.data(newModels);
+    // // 状態を上書き
+    // state = AsyncValue.data(newModels);
   }
 }

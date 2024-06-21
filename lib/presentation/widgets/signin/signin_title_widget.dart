@@ -11,7 +11,7 @@ class SigninTitleWidget extends StatelessWidget {
     return Text(
       'Janmanager',
       style: GoogleFonts.lobsterTwo(
-        fontSize: SizeThema.fontSizeTitle,
+        fontSize: SizeThema.fontSizeWhale,
         color: ColorThema.green
       ),
     );

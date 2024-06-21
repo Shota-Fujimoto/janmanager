@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
             Text(
               'Janmanager',
               style: GoogleFonts.lobsterTwo(
-                fontSize: SizeThema.fontSizeHomeTitle,
+                fontSize: SizeThema.fontSizeElephant,
               ),
             ),
           ],
@@ -55,6 +55,14 @@ class _HomePageState extends State<HomePage> {
               );
             },
             icon: const Icon(Icons.login_rounded)
+          ),
+          const SizedBox(width: 25),
+          //マイページボタン
+          IconButton(
+            onPressed: () {
+              
+            },
+            icon: const Icon(Icons.manage_accounts)
           ),
           const SizedBox(width: SizeThema.appbarSide),
         ],

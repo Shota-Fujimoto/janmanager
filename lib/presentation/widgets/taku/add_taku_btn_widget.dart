@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:janmanager/presentation/dialogs/add_taku_dialog.dart';
 import 'package:janmanager/presentation/thema/color_thema.dart';
 
 class AddTakuBtnWidget extends StatelessWidget {
   final String userId;
-  const AddTakuBtnWidget({super.key, required this.userId});
+  final WidgetRef ref;
+  const AddTakuBtnWidget({super.key, required this.userId, required this.ref});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,7 @@ class AddTakuBtnWidget extends StatelessWidget {
             context: context,
             barrierDismissible: false,
             builder: (_) {
-              return AddTakuDialog(userId: userId);
+              return AddTakuDialog(userId: userId, ref: ref);
             }
           );
         },
