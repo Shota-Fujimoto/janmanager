@@ -29,7 +29,12 @@ class MyApp extends StatelessWidget {
       stream: FirebaseAuth.instance.userChanges(),
       builder: (BuildContext context, AsyncSnapshot<User?> snapshot) {
         if (snapshot.hasData) {
-          return const MaterialApp(home: HomePage(),);
+          return MaterialApp(
+            home: ConstrainedBox(
+              constraints: BoxConstraints.loose(const Size(700, 800)),
+              child: const HomePage(),
+            )
+          );
         } else {
           return const MaterialApp(home: SigninPage(),);
         }

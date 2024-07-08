@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gap/gap.dart';
 import 'package:janmanager/presentation/thema/color_thema.dart';
 import 'package:janmanager/presentation/thema/size_thema.dart';
 import 'package:janmanager/presentation/widgets/signin/signin_attention_widget.dart';
@@ -27,31 +28,34 @@ class SigninPage extends ConsumerWidget {
             ]
           )
         ),
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: SizeThema.fieldWidthMid,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(padding: EdgeInsets.only(top: 80)),
-                  SigninTitleWidget(),
-                  Padding(padding: EdgeInsets.only(top: 20)),
-                  SigninBarWidget(),
-                  Padding(padding: EdgeInsets.only(top: 20)),
-                  SigninGoogleBtnWidget(),
-                  Padding(padding: EdgeInsets.only(top: 20)),
-                  SigninTwitterBtnWidget(),
-                  Padding(padding: EdgeInsets.only(top: 30)),
-                  SigninAttentionWidget()
-                ],
-              ),
-            )
-          ],
-        ),
+        child: const SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: SizeThema.fieldWidthMid,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Gap(80),
+                    SigninTitleWidget(),
+                    Gap(20),
+                    SigninBarWidget(),
+                    Gap(20),
+                    SigninGoogleBtnWidget(),
+                    Gap(20),
+                    SigninTwitterBtnWidget(),
+                    Gap(50),
+                    SigninAttentionWidget(),
+                    Gap(80)
+                  ],
+                ),
+              )
+            ],
+          ),
+        ) ,
       ),
     );
   }

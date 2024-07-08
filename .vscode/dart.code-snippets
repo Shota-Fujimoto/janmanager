@@ -63,5 +63,22 @@
         "  }",
         "}"
       ]
+    },
+    "hooks": {
+      "prefix": "hooks",
+      "scope": "dart",
+      "body": [
+        "import 'package:flutter/material.dart';",
+        "import 'import 'package:hooks_riverpod/hooks_riverpod.dart';",
+        "",
+        "class $1 extends HookConsumerWidget {",
+        "  const $1({super.key});",
+        "",
+        "  @override",
+        "  Widget build(BuildContext context, WidgetRef ref) {",
+        "    return Container();",
+        "  }",
+        "}"
+      ]
     }
   }

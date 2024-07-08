@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:janmanager/domain/types/menu_item.dart';
 import 'package:janmanager/presentation/dialogs/signout_dialog.dart';
 import 'package:janmanager/presentation/thema/color_thema.dart';
 import 'package:janmanager/presentation/thema/size_thema.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
 
-class _HomePageState extends State<HomePage> {
-  //メニューのインデックス
-  int _selectedIndex = 0;
-  //メニュークラスのインスタンス
-  MenuItem menuItem = MenuItem();
+    //メニューのインデックス
+    final selectedIndex = useState(0);
+    //メニュークラスのインスタンス
+    MenuItem menuItem = MenuItem();
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       //ヘッダー
       appBar: AppBar(
@@ -56,15 +54,7 @@ class _HomePageState extends State<HomePage> {
             },
             icon: const Icon(Icons.login_rounded)
           ),
-          const SizedBox(width: 25),
-          //マイページボタン
-          IconButton(
-            onPressed: () {
-              
-            },
-            icon: const Icon(Icons.manage_accounts)
-          ),
-          const SizedBox(width: SizeThema.appbarSide),
+          const SizedBox(width: 25)
         ],
       ),
       //メインコンテンツ
@@ -74,33 +64,42 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            NavigationRail(
-              labelType: NavigationRailLabelType.all,
-              elevation: 7,
-              backgroundColor: ColorThema.white,
-              minExtendedWidth: 170,
-              useIndicator: false,
-              selectedIconTheme: const IconThemeData(color: ColorThema.green),
-              selectedLabelTextStyle: const TextStyle(color: ColorThema.green),
-              unselectedIconTheme: const IconThemeData(color: ColorThema.grey),
-              unselectedLabelTextStyle: const TextStyle(color: ColorThema.grey),
-              destinations: [
-                //メニューアイテムを作成
-                for (final menu in menuItem.menuList.keys)
-                  NavigationRailDestination(
-                    icon: Icon(menuItem.menuList[menu]),
-                    label: Text(menu),
+            LayoutBuilder(
+              builder: (context, constraint) {
+                return SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(minHeight: constraint.maxHeight),
+                    child: IntrinsicHeight(
+                      child: NavigationRail(
+                        labelType: NavigationRailLabelType.all,
+                        elevation: 7,
+                        backgroundColor: ColorThema.white,
+                        minExtendedWidth: 170,
+                        useIndicator: false,
+                        selectedIconTheme: const IconThemeData(color: ColorThema.green),
+                        selectedLabelTextStyle: const TextStyle(color: ColorThema.green),
+                        unselectedIconTheme: const IconThemeData(color: ColorThema.grey),
+                        unselectedLabelTextStyle: const TextStyle(color: ColorThema.grey),
+                        destinations: [
+                          //メニューアイテムを作成
+                          for (final menu in menuItem.menuList.keys)
+                            NavigationRailDestination(
+                              icon: Icon(menuItem.menuList[menu]),
+                              label: Text(menu),
+                            ),
+                        ],
+                        selectedIndex: selectedIndex.value,
+                        onDestinationSelected: (index) {
+                          selectedIndex.value = index;
+                        },
+                      ),
+                    ),
                   ),
-              ],
-              selectedIndex: _selectedIndex,
-              onDestinationSelected: (index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
+                );
+              }
             ),
             //表示するページを選択
-            menuItem.selectPage(_selectedIndex)
+            menuItem.selectPage(selectedIndex.value)
           ],
         ),
       ) 

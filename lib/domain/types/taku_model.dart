@@ -3,19 +3,21 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TakuModel {
   final String? id;
+  final int? no;
   final String? userId;
-  final String? takuName;
   final String? haipai;
+  final String? tensuHyoji;
   final String? sanma;
   final String? smoke;
-  final String? feeStudent;
-  final String? feeIppan;
+  final int? feeStudent;
+  final int? feeIppan;
 
   TakuModel({
     this.id,
+    this.no,
     this.userId,
-    this.takuName,
     this.haipai,
+    this.tensuHyoji,
     this.sanma,
     this.smoke,
     this.feeStudent,
@@ -28,9 +30,10 @@ class TakuModel {
   ) {
     final data = snapshot.data();
     return TakuModel(
+      no: data?['no'],
       userId: data?['userId'],
-      takuName: data?['takuName'],
       haipai: data?['haipai'],
+      tensuHyoji: data?['tensuHyoji'],
       sanma: data?['sanma'],
       smoke: data?['smoke'],
       feeStudent: data?['feeStudent'],
@@ -40,13 +43,14 @@ class TakuModel {
 
   Map<String, dynamic> toFirestore() {
     return {
-      if (userId != null) "userId": userId,
-      if (takuName != null) "takuName": takuName,
-      if (haipai != null) "haipai": haipai,
-      if (sanma != null) "sanma": sanma,
-      if (smoke != null) "smoke": smoke,
-      if (feeStudent != null) "feeStudent": feeStudent,
-      if (feeIppan != null) "feeIppan": feeIppan,
+      if (no != null) 'no': no,
+      if (userId != null) 'userId': userId,
+      if (haipai != null) 'haipai': haipai,
+      if (tensuHyoji != null) 'tensuHyoji': tensuHyoji,
+      if (sanma != null) 'sanma': sanma,
+      if (smoke != null) 'smoke': smoke,
+      if (feeStudent != null) 'feeStudent': feeStudent,
+      if (feeIppan != null) 'feeIppan': feeIppan,
     };
   }
 }

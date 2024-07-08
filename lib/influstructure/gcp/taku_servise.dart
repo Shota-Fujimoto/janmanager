@@ -17,7 +17,7 @@ class TakuServise {
 
   Future<List<TakuModel>> read(userId) async {
     //ドキュメントを取得
-    final ref = db.collection('janmanager_taku').where('userId', isEqualTo: userId).orderBy('takuName').withConverter(
+    final ref = db.collection('janmanager_taku').where('userId', isEqualTo: userId).orderBy('no').withConverter(
       fromFirestore: TakuModel.fromFirestore,
       toFirestore: (TakuModel takuModel, _) => takuModel.toFirestore(),
     );
@@ -28,7 +28,6 @@ class TakuServise {
     final List<TakuModel> takuList = docSnap.docs.map((doc) => TakuModel(
       id: doc.id,
       userId: doc['userId'],
-      takuName: doc['takuName'],
       haipai: doc['haipai'],
       sanma: doc['sanma'],
       smoke: doc['smoke'],
@@ -38,6 +37,17 @@ class TakuServise {
 
     return takuList;
             
+  }
+
+  Future<int> count(userId) async {
+    //件数の戻り値
+    int cnt = 0;
+    //件数を取得
+    final ref = db.collection('janmanager_taku').count().get().then(
+      (res) => cnt = res.count!
+    );
+    
+    return cnt;
   }
 
 }

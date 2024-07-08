@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:janmanager/application/state/taku_models_provider.dart';
 import 'package:janmanager/domain/types/taku_model.dart';
 import 'package:janmanager/influstructure/gcp/taku_servise.dart';
 import 'package:janmanager/presentation/thema/color_thema.dart';
@@ -18,12 +17,12 @@ class AddTakuDialog extends StatefulWidget {
 class _AddTakuDialogState extends State<AddTakuDialog> {
   //エラーメッセージ（全体）
   String _errMsgAll = '';
-  //卓名
-  String _takuName = '';
-  String _errMsgTakuName = '';
   //配牌
   String _haipai = 'auto';
   String _errMsgHaipai = '';
+  //点数表示
+  String _tensuHyoji = 'true';
+  String _errMsgTensuHyoji = '';
   //三麻
   String _sanma = 'ok';
   String _errMsgSanma = '';
@@ -54,40 +53,6 @@ class _AddTakuDialogState extends State<AddTakuDialog> {
             },
             children: [
               //エラーメッセージ（全体）
-              TableRow(
-                children: [
-                  Container(),
-                  Container(),
-                  const SizedBox(height: 20)
-                ]
-              ),
-              //卓名
-              TableRow(
-                children: [
-                  const Center(child: Text('卓名', style: TextStyle(fontSize: SizeThema.fontSizeTiger),)),
-                  const Center(child: Text(':', style: TextStyle(fontSize: SizeThema.fontSizeTiger),)),
-                  SizedBox(
-                    width: SizeThema.fieldWidth,
-                    height: SizeThema.fieldHeightMin,
-                    child: TextField(
-                      cursorColor: ColorThema.grey,
-                      cursorHeight: SizeThema.fieldHeightMin-15,
-                      decoration: const InputDecoration(
-                        hintText: '8文字以内',
-                        border: OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: ColorThema.green, width: 2)),
-                        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 5)
-                      ),
-                      onChanged: (text) {
-                        setState(() {
-                          _takuName = text;
-                        });
-                      },
-                    )
-                  )
-                ]
-              ),
-              //エラーメッセージ（卓名）
               TableRow(
                 children: [
                   Container(),
@@ -136,6 +101,54 @@ class _AddTakuDialogState extends State<AddTakuDialog> {
                 ]
               ),
               //エラーメッセージ（配牌）
+              TableRow(
+                children: [
+                  Container(),
+                  Container(),
+                  const SizedBox(height: 20,)
+                ]
+              ),
+              //点数表示
+              TableRow(
+                children: [
+                  const Center(child: Text('点数表示', style: TextStyle(fontSize: SizeThema.fontSizeTiger),)),
+                  const Center(child: Text(':', style: TextStyle(fontSize: SizeThema.fontSizeTiger),)),
+                  SizedBox(
+                    width: SizeThema.fieldWidth,
+                    height: SizeThema.fieldHeightMin,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Radio(
+                          activeColor: ColorThema.black,
+                          value: 'true',
+                          groupValue: _tensuHyoji,
+                          onChanged: (value) {
+                            setState(() {
+                              _tensuHyoji = value!;
+                            });
+                          }
+                        ),
+                        const Text('あり'),
+                        const SizedBox(width: 20),
+                        Radio(
+                          activeColor: ColorThema.black,
+                          value: 'false',
+                          groupValue: _tensuHyoji,
+                          onChanged: (value) {
+                            setState(() {
+                              _tensuHyoji = value!;
+                            });
+                          }
+                        ),
+                        const Text('なし'),
+                      ],
+                    ),
+                  )
+                ]
+              ),
+              //エラーメッセージ（点数表示）
               TableRow(
                 children: [
                   Container(),
@@ -328,21 +341,26 @@ class _AddTakuDialogState extends State<AddTakuDialog> {
             children: [
               TextButton(
                 onPressed: () async {
-                  final TakuModel takuModel = TakuModel(
-                    userId: widget.userId,
-                    takuName: _takuName,
-                    haipai: _haipai,
-                    sanma: _sanma,
-                    smoke: _smoke,
-                    feeStudent: _feeStudent,
-                    feeIppan: _feeIppan
-                  );
                   //卓サービスをインスタンス化
                   final takuServise = TakuServise();
+                  //卓の番号を取得
+                  final cnt = await takuServise.count(widget.userId);
+                  final takuNo = cnt+1;
+                  //登録用の卓モデルを作成
+                  final TakuModel takuModel = TakuModel(
+                    no: takuNo,
+                    userId: widget.userId,
+                    haipai: _haipai,
+                    tensuHyoji: _tensuHyoji,
+                    sanma: _sanma,
+                    smoke: _smoke,
+                    feeStudent: int.parse(_feeStudent),
+                    feeIppan: int.parse(_feeIppan)
+                  );
                   //卓を新規作成
                   takuServise.create(takuModel);
                   //状態管理している卓リストを最新化
-                  widget.ref.read(takuModelsNotifireProvider.notifier).reRead();
+                  //widget.ref.read(takuModelsNotifireProvider.notifier).reRead();
                   //ダイアログを閉じる
                   Navigator.pop(context);
                 },

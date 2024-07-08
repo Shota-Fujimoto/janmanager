@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:janmanager/application/state/usr_id_provider.dart';
-import 'package:janmanager/presentation/widgets/taku/add_taku_btn_widget.dart';
-import 'package:janmanager/presentation/widgets/taku/taku_list_widget.dart';
+import 'package:janmanager/presentation/widgets/common_widget/category_widget.dart';
+import 'package:janmanager/presentation/widgets/taku_edit/taku_table_widget.dart';
 
 class TakuEditPage extends ConsumerWidget {
   const TakuEditPage({super.key});
@@ -13,22 +13,14 @@ class TakuEditPage extends ConsumerWidget {
     String userId = ref.read(userIdNotifireProvider);
 
     return Container(
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.all(20),
+      width: 1100,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 30,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AddTakuBtnWidget(userId: userId, ref: ref),
-                TakuListWidget(userId: userId),
-              ],
-            )
-          ),
+          const CategoryWidget(title: '雀卓'),
+          TakuTableWidget(userId: userId, ref: ref)
         ],
       ) 
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:janmanager/presentation/pages/event_page.dart';
 import 'package:janmanager/presentation/pages/free_page.dart';
 import 'package:janmanager/presentation/pages/menu_page.dart';
+import 'package:janmanager/presentation/pages/my_page.dart';
 import 'package:janmanager/presentation/pages/profit_page.dart';
 import 'package:janmanager/presentation/pages/stock_page.dart';
 import 'package:janmanager/presentation/pages/taku_edit_page.dart';
@@ -16,7 +17,8 @@ class MenuItem {
     'フリー': Icons.people_alt,
     '売上': Icons.analytics,
     '在庫': Icons.source,
-    'メニュー': Icons.description
+    'メニュー': Icons.description,
+    'マイページ': Icons.manage_accounts
   };
 
   Widget selectPage(index) {
@@ -27,7 +29,8 @@ class MenuItem {
       FreePage(),
       ProfitPage(),
       StockPage(),
-      MenuPage()
+      MenuPage(),
+      MyPage()
     ];
 
     return pageList[index];

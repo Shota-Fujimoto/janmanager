@@ -12,7 +12,7 @@ class SigninAttentionWidget extends StatelessWidget {
       child: Text(
         'アカウントをお持ちでない方はどちらかでアカウントを作成してからご利用を開始して下さい。',
         style: TextStyle(
-          color: ColorThema.grey
+          color: ColorThema.black
         ),
       ),
     );
