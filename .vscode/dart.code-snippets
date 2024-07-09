@@ -69,7 +69,7 @@
       "scope": "dart",
       "body": [
         "import 'package:flutter/material.dart';",
-        "import 'import 'package:hooks_riverpod/hooks_riverpod.dart';",
+        "import 'package:hooks_riverpod/hooks_riverpod.dart';",
         "",
         "class $1 extends HookConsumerWidget {",
         "  const $1({super.key});",

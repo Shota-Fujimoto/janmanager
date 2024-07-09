@@ -1,15 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PackInfoModel {
+  final String? documentId;
   final String? userId;
   final String? packName;
   final int? num;
   final int? fee;
-  final String? time;
+  final int? time;
   final String? availavle;
-  final String? autoCarry;
+  final bool? autoCarry;
 
   PackInfoModel({
+    this.documentId,
     this.userId,
     this.packName,
     this.num,
@@ -25,6 +27,7 @@ class PackInfoModel {
   ){
     final data = snapshot.data();
     return PackInfoModel(
+      documentId: data?['documentId'],
       userId: data?['userId'],
       packName: data?['packName'],
       num: data?['num'],

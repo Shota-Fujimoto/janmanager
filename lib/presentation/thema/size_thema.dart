@@ -5,6 +5,7 @@ class SizeThema {
   static const double fieldWidthMid = 400;
 
   static const double zipcodeWidth = 200;
+  static const double timeWidth = 75;
 
   static const double btnWidth = 100;
 

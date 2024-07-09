@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:janmanager/presentation/dialogs/tenpo_info_dialog.dart';
+import 'package:janmanager/presentation/dialogs/pack_info_add_dialog.dart';
 import 'package:janmanager/presentation/thema/color_thema.dart';
 import 'package:janmanager/presentation/thema/size_thema.dart';
 
-class PacKInfoBtnWidget extends StatelessWidget {
-  const PacKInfoBtnWidget({super.key});
+class PacKInfoAddBtnWidget extends StatelessWidget {
+  const PacKInfoAddBtnWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class PacKInfoBtnWidget extends StatelessWidget {
             context: context,
             barrierDismissible: false,
             builder: (_) {
-              return const TenpoInfoDialog();
+              return const PackInfoAddDialog();
             }
           );
         },

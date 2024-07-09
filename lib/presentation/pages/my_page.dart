@@ -5,7 +5,7 @@ import 'package:janmanager/application/state/tenpo_info_provider.dart';
 import 'package:janmanager/presentation/widgets/common_widget/category_widget.dart';
 import 'package:janmanager/presentation/widgets/common_widget/error_contents_widget.dart';
 import 'package:janmanager/presentation/widgets/common_widget/indicator_widget.dart';
-import 'package:janmanager/presentation/widgets/mypage/pack_info_btn_widget.dart';
+import 'package:janmanager/presentation/widgets/mypage/pack_info_add_btn_widget.dart';
 import 'package:janmanager/presentation/widgets/mypage/pack_info_table_widget.dart';
 import 'package:janmanager/presentation/widgets/mypage/tenpo_info_btn_widget.dart';
 import 'package:janmanager/presentation/widgets/mypage/tenpo_info_table_widget.dart';
@@ -63,7 +63,7 @@ class MyPage extends HookConsumerWidget {
             const CategoryWidget(title: '利用可能パック'),
             PackInfoTableWidget(packInfo: packInfo),
             const Padding(padding: EdgeInsets.only(top: 20)),
-            const PacKInfoBtnWidget(),
+            const PacKInfoAddBtnWidget(),
             const Padding(padding: EdgeInsets.only(top: 50)),
             const CategoryWidget(title: 'フリールール'),
             TenpoInfoTableWidget(tenpoInfo: tenpoInfo),

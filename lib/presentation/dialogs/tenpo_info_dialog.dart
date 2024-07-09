@@ -154,9 +154,6 @@ class TenpoInfoDialog extends HookConsumerWidget {
                                   focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: ColorThema.green, width: 2)),
                                   contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 5)
                                 ),
-                                onChanged: (zipcode) async {
-                                  
-                                },
                               ),
                             ),
                             SizedBox(
